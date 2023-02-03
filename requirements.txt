@@ -20,7 +20,7 @@ h11==0.12.0; python_version >= '3.6'
 httpcore==0.15.0; python_version >= '3.7'
 httpx==0.23.0; python_version >= '3.7'
 idna==3.4; python_version >= '3.5'
-iniconfig==1.1.1
+iniconfig==2.0.0
 loguru==0.6.0; python_version >= '3.5'
 packaging==21.3; python_version >= '3.6'
 pluggy==1.0.0; python_version >= '3.6'
