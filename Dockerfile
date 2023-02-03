@@ -1,4 +1,4 @@
-FROM python:3.10-bullseye
+FROM python:3.11-bullseye
 
 MAINTAINER Luginbash Hiyajo <725033+luginbash@users.noreply.github.com>
 
