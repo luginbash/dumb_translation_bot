@@ -16,3 +16,10 @@ image: requirements.txt
 
 clean:
 	rm -f requirements.txt
+
+.PHONY: push
+push:
+	docker push $(IMAGE_NAME)
+	# additionally push dockerhub
+	docker tag $(IMAGE_NAME) $(USER)/$(NAME):latest
+	docker push $(USER)/$(NAME):latest
