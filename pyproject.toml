@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "telegram-dumb-translate-bot"
+version = "0.1.0"
+description = ""
+authors = ["luginbash <725033+luginbash@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "telegram_dumb_translate_bot"}]
+
+[tool.poetry.scripts]
+telegram-dumb-translate-bot = "telegram_dumb_translate_bot:app"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-telegram-bot = "^20.0"
+sentry-sdk = "^1.14.0"
+pytest = "^7.2.1"
+aria2p = "^0.11.3"
+typer = "^0.7.0"
+deepl = "^1.13.0"
+polyglot = "^16.7.4"
+pyicu = "^2.10.2"
+pycld2 = "^0.41"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
