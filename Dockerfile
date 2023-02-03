@@ -1,8 +1,6 @@
-ARG VERSION
-
 FROM python:3.10-bullseye
 
-MAINTAINER Luginbash Hiyajo <bash@lug.sh>
+MAINTAINER Luginbash Hiyajo <725033+luginbash@users.noreply.github.com>
 
 COPY . /app
 WORKDIR /app
