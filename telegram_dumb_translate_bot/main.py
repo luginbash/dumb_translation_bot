@@ -17,7 +17,7 @@ import logging
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 
-
+app = typer.Typer()
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """ /start is the default command to receive from a user at first interaction => should be handled."""
     await update.message.reply_text("Hey! You started this.")
@@ -62,6 +62,7 @@ async def inline_translate(update: Update, ctx: ContextTypes.DEFAULT_TYPE, trans
         await update.inline_query.answer(results)
 
 
+@app.command()
 def main(telegram_token: str = typer.Option("", envvar="TELEGRAM_TOKEN"),
          telegram_api: str = typer.Option("https://api.telegram.org/bot", envvar="TELEGRAM_API"),
          deepl_auth_key: str = typer.Option("", envvar="DEEPL_AUTH_KEY"),
@@ -81,6 +82,3 @@ def main(telegram_token: str = typer.Option("", envvar="TELEGRAM_TOKEN"),
 
     app.run_polling()
 
-
-if __name__ == "__main__":
-    typer.run(main)

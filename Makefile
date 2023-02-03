@@ -8,17 +8,17 @@ IMAGE_NAME := $(REGISTRY)/$(USER)/$(NAME):$(VERSION)
 
 all: image
 
-requirements.txt:
-	pipenv lock -r > requirements.txt
+dist/*:
+	poetry build
 
-image: requirements.txt
+image:
 	docker build -t $(IMAGE_NAME) .
 
 clean:
 	rm -f requirements.txt
 
 .PHONY: push
-push:
+push: image
 	docker push $(IMAGE_NAME)
 	# additionally push dockerhub
 	docker tag $(IMAGE_NAME) $(USER)/$(NAME):latest
