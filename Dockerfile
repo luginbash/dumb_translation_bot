@@ -1,6 +1,6 @@
 MAINTAINER Luginbash Hiyajo <725033+luginbash@users.noreply.github.com>
 
-FROM python:3.10-bullseye as base
+FROM python:3.11-bullseye as base
 ENV PYTHONUNBUFFERED=1
 
 FROM base as builder
