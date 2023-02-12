@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 from functools import partial
-import threading
-import asyncio
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import typer
 from polyglot.detect import Detector
@@ -23,14 +22,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text("Hey! You started this.")
 
 
-async def translate_inline_result_article(translator: deepl.Translator, text: str, source_lang: str, target_lang: str):
+def translate_inline_result_article(translator: deepl.Translator, text: str, source_lang: str, target_lang: str):
     """ translate a text to target language"""
     log = logging.getLogger(__name__)
     log.info(f"translating from {source_lang} to {target_lang}")
     result = translator.translate_text(text, target_lang=target_lang)
-    return_text = f"""{result.text}
-<tg-spoiler><i>original text: {text} 
-translated by a stupid translation bot.</i></tg-spoiler>"""
+    return_text = f"{result.text}"
+
     return InlineQueryResultArticle(id=str(uuid4()),
                                     title=f"{result.detected_source_lang} => {target_lang}",
                                     description=result.text,
@@ -49,16 +47,17 @@ async def inline_translate(update: Update, ctx: ContextTypes.DEFAULT_TYPE, trans
         log.debug(f"detected query_lang={query_lang}")
         target_langs = [l for l in target_langs if not l.startswith(query_lang)]
         log.debug(f"removed detected lang:{query_lang} from target_langs list")
-        tasks = set()
-        for lang in target_langs:
-            tasks.add(asyncio.create_task(translate_inline_result_article(
+
+        with ThreadPoolExecutor() as executor:
+            tasks = [ executor.submit(
+                translate_inline_result_article,
                 translator=translator,
                 text=query,
-                source_lang=query_lang,
-                target_lang=lang,
-            )))
+                source_lang=query_langs,
+                target_lang=lang)
+                for lang in target_langs ]
+            results = [ r.result() for r in as_completed(tasks) ]
 
-        results = await asyncio.gather(*tasks)
         await update.inline_query.answer(results)
 
 
@@ -82,3 +81,5 @@ def main(telegram_token: str = typer.Option("", envvar="TELEGRAM_TOKEN"),
 
     app.run_polling()
 
+if __name__ == "__main__":
+    typer.run(main)
