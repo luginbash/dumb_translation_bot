@@ -1,6 +1,7 @@
-# dumb_translation_bot
+# Dumb translator bot
 A dead simple dumb translation bot using Telegram inline API and DeepL
 
+[![Docker Image CI](https://github.com/luginbash/dumb_translation_bot/actions/workflows/docker-build-push.yml/badge.svg?branch=master&event=registry_package)](https://github.com/luginbash/dumb_translation_bot/actions/workflows/docker-build-push.yml)
 
 ## Quickstart 
 
