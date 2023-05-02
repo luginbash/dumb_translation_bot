@@ -13,7 +13,7 @@ telegram-dumb-translate-bot = "telegram_dumb_translate_bot:app"
 [tool.poetry.dependencies]
 python = "^3.10"
 python-telegram-bot = "^20.0"
-typer = "^0.7.0"
+typer = "^0.9.0"
 deepl = "^1.13.0"
 polyglot = "^16.7.4"
 six = "^1.16.0"
