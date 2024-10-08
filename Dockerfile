@@ -1,5 +1,5 @@
 
-FROM python:3.12-alpine as base
+FROM python:3.13-alpine as base
 MAINTAINER Luginbash Hiyajo <725033+luginbash@users.noreply.github.com>
 
 ENV PYTHONUNBUFFERED=1 \
