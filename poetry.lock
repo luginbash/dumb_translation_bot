@@ -270,13 +270,13 @@ files = [
 
 [[package]]
 name = "pyicu"
-version = "2.12"
+version = "2.16.2"
 description = "Python extension wrapping the ICU C++ API"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "PyICU-2.12.tar.gz", hash = "sha256:bd7ab5efa93ad692e6daa29cd249364e521218329221726a113ca3cb281c8611"},
+    {file = "pyicu-2.16.2.tar.gz", hash = "sha256:006d51e24b5ec76df6ec2130f3dde269c51db8b8cfebb7d45a427dde0d10aa52"},
 ]
 
 [[package]]
